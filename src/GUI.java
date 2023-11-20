@@ -1,21 +1,37 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GUI {
-    public GUI(){
-        JFrame frame = new JFrame();
+public class GUI extends JFrame {
 
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(200, 300, 200, 300));
-        panel.setLayout(new GridLayout());
+    public GUI() {
+        setTitle("Tło z Obrazem");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Aquarium");
-        frame.pack();
-        frame.setVisible(true);
+        ImageIcon water = new ImageIcon("ocean.jpg");
+
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(water.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        // Ustawienie layoutu dla panelu (jeśli potrzebne)
+        panel.setLayout(new BorderLayout());
+
+        // Dodanie panelu do okna
+        setContentPane(panel);
+
+        // Wyśrodkowanie okna na ekranie
+        setLocationRelativeTo(null);
     }
+
     public static void main(String[] args) {
-        new GUI();
+        SwingUtilities.invokeLater(() -> {
+            GUI app = new GUI();
+            app.setVisible(true);
+        });
     }
 }
