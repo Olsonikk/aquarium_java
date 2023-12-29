@@ -6,7 +6,7 @@ public class GUI extends JFrame {
     public GUI() {
         setTitle("Tło z Obrazem");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(800, 600);
         
         InsideContainer panel = new InsideContainer();
 
