@@ -2,47 +2,54 @@ import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Fish extends JFrame{
+    //y = 470 is a bottom edge
     private int x,y;
-    private final int randomMinTop = ThreadLocalRandom.current().nextInt(100, 300);
-    private final int randomMaxBottom = ThreadLocalRandom.current().nextInt(350, 700);
-    private final int randomMinLeft = ThreadLocalRandom.current().nextInt(150, 300);
-    private final int randomMaxRight = ThreadLocalRandom.current().nextInt(350, 650);
 
+    private int action;
+    private final int randomMinTop = ThreadLocalRandom.current().nextInt(0, 200);
+    private final int randomMaxBottom = ThreadLocalRandom.current().nextInt(250, 480);
+    private final int randomMinLeft = ThreadLocalRandom.current().nextInt(0, 300);
+    private final int randomMaxRight = ThreadLocalRandom.current().nextInt(350, 680);
+//    private final int randomMaxRight = 650;
+//    private final int randomMinLeft = 300;
+//    private final int randomMaxBottom = 480;
+//      private final int randomMinTop = 0;
     ImageIcon fish_photo = new ImageIcon("fish.png");
     ImageIcon fish_photo_left = new ImageIcon("fish_left.png");
 
-    public void randomStartPosition(){
-        x = ThreadLocalRandom.current().nextInt(150, 650);
-        y = (randomMinTop + randomMaxBottom)/2;
-
+    private void randomStartPosition(){
+        x = ThreadLocalRandom.current().nextInt(randomMinLeft, randomMaxRight);
+        y = ThreadLocalRandom.current().nextInt(randomMinTop, randomMaxBottom);
         System.out.println(x);
         System.out.println(y);
 
         this.setLocation(x, y);
     }
 
-    public void moveUp()
+    private void moveUp()
     {
         if (randomMinTop < y) {
-            y -= 20;
+            y -= 10;
             this.setLocation(x, y);
         }
         else {
             System.out.println("Too high!");
+            //y += 40;
         }
     }
-    public void moveDown()
+    private void moveDown()
     {
         if (randomMaxBottom > y) {
-            y += 20;
+            y += 10;
             this.setLocation(x, y);
         }
         else {
             System.out.println("Too low!");
+            //y -= 40;
         }
     }
 
-    public void moveLeft()
+    private void moveLeft()
     {
         if (randomMinLeft < x) {
             x -= 20;
@@ -50,18 +57,52 @@ public class Fish extends JFrame{
         }
         else {
             System.out.println("Too much to the left!");
+            //x += 40;
         }
     }
-    public void moveRight()
+    private void moveRight()
     {
         if (randomMaxRight > x) {
-            x += 20;
+            x += 10;
             this.setLocation(x, y);
         }
         else {
             System.out.println("Too much to the right!");
+            //x -= 40;
         }
     }
+    public void newAction()
+    {
+        this.action = ThreadLocalRandom.current().nextInt(0, 4);
+    }
+    public int getAction()
+    {
+        return action;
+    }
+    public void move()
+    {
+        newAction();
+        if(action == 0)
+        {
+            moveUp();
+        }
+        else if(action == 1)
+        {
+            moveDown();
+        }
+        else if(action == 2)
+        {
+            moveLeft();
+            //System.out.println("LEFT");
+        }
+        else if (action == 3)
+        {
+            moveRight();
+            //System.out.println("RIGHT");
+        }
+    }
+
+
 
 
 

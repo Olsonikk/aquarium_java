@@ -2,67 +2,58 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.ThreadLocalRandom;
-
+import java.util.ArrayList;
 
 public class InsideContainer extends JPanel
 {
-    int action;
-    Fish fish_object = new Fish();
+    int action, previous_direction;
     public ImageIcon water;
-    public ImageIcon fish_picture;
-    public ImageIcon fish_picture_left;
+
+    ArrayList<Fish> names = new ArrayList<>();
+
+    public void newFish(Fish f)
+    {
+        names.add(f);
+    }
 
     InsideContainer(){
         water = new ImageIcon("ocean.jpg");
-        fish_picture = fish_object.fish_photo;
-        fish_picture_left = fish_object.fish_photo_left;
-        Timer timer = new Timer(100, new ActionListener() {
+        Timer timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                action = ThreadLocalRandom.current().nextInt(0, 4);
-//                System.out.println(action);
-//                System.out.println("X: " + fish_object.getX());
-//                System.out.println("Y: " + fish_object.getY());
-                //switch(action){
-                    //case 0:
-                        //fish_object.moveUp();
-                    //case 1:
-                        //fish_object.moveDown();
-                //}
-                if(action == 0)
+                for(Fish fisk : names)
                 {
-                    fish_object.moveUp();
+                    if(action == 2 || action == 3)
+                    {
+                        previous_direction = action;
+                    }
+                    fisk.move();
+                    repaint();
                 }
-                else if(action == 1)
-                {
-                    fish_object.moveDown();
-                }
-                else if(action == 2)
-                {
-                    fish_object.moveLeft();
-                }
-                else if (action == 3) {
-                    fish_object.moveRight();
-                }
-                repaint();
+
             }
         });
         timer.start();
     }
-
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(water.getImage(), 0, 0, 800, 600, this);
-        if(action == 2)
+
+        for(Fish fisk : names)
         {
-            g.drawImage(fish_picture_left.getImage(), fish_object.getX(), fish_object.getY(), 150, 100, this);
-        }
-        else
-        {
-            g.drawImage(fish_picture.getImage(), fish_object.getX(), fish_object.getY(), 150, 100, this);
+            action = fisk.getAction();
+            if(action == 2 || (previous_direction == 2 && action != 3))
+            {
+                g.drawImage(fisk.fish_photo_left.getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
+            }
+            else
+            {
+                g.drawImage(fisk.fish_photo.getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
+            }
         }
 
+
     }
+
     
 }
