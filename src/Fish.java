@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Fish extends JFrame{
+public abstract class Fish extends JFrame{
     //y = 470 is a bottom edge
     private int x,y;
 
@@ -10,12 +10,15 @@ public class Fish extends JFrame{
     private final int randomMaxBottom = ThreadLocalRandom.current().nextInt(250, 480);
     private final int randomMinLeft = ThreadLocalRandom.current().nextInt(0, 300);
     private final int randomMaxRight = ThreadLocalRandom.current().nextInt(350, 680);
-//    private final int randomMaxRight = 650;
-//    private final int randomMinLeft = 300;
-//    private final int randomMaxBottom = 480;
-//      private final int randomMinTop = 0;
-    ImageIcon fish_photo = new ImageIcon("fish.png");
-    ImageIcon fish_photo_left = new ImageIcon("fish_left.png");
+
+    ImageIcon leftImage;
+    ImageIcon rightImage;
+
+
+
+
+
+
 
     private void randomStartPosition(){
         x = ThreadLocalRandom.current().nextInt(randomMinLeft, randomMaxRight);
@@ -100,6 +103,24 @@ public class Fish extends JFrame{
             moveRight();
             //System.out.println("RIGHT");
         }
+    }
+    protected void setLeftImage(ImageIcon i)
+    {
+        leftImage = i;
+    }
+
+    protected void setRightImage(ImageIcon i)
+    {
+        rightImage  = i;
+    }
+
+    public ImageIcon getLeftImage()
+    {
+        return leftImage;
+    }
+    public ImageIcon getRightImage()
+    {
+        return rightImage;
     }
 
 

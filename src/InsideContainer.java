@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class InsideContainer extends JPanel
@@ -17,21 +15,18 @@ public class InsideContainer extends JPanel
     }
 
     InsideContainer(){
-        water = new ImageIcon("ocean.jpg");
-        Timer timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for(Fish fisk : names)
+        water = new ImageIcon("png/ocean.jpg");
+        Timer timer = new Timer(200, e -> {
+            for(Fish fisk : names)
+            {
+                if(action == 2 || action == 3)
                 {
-                    if(action == 2 || action == 3)
-                    {
-                        previous_direction = action;
-                    }
-                    fisk.move();
-                    repaint();
+                    previous_direction = action;
                 }
-
+                fisk.move();
+                repaint();
             }
+
         });
         timer.start();
     }
@@ -44,11 +39,11 @@ public class InsideContainer extends JPanel
             action = fisk.getAction();
             if(action == 2 || (previous_direction == 2 && action != 3))
             {
-                g.drawImage(fisk.fish_photo_left.getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
+                g.drawImage(fisk.getLeftImage().getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
             }
             else
             {
-                g.drawImage(fisk.fish_photo.getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
+                g.drawImage(fisk.getRightImage().getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
             }
         }
 

@@ -1,17 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
+    private int specie;
     InsideContainer fishContainer;
-    public void makeFish()
+    public void makeFish(Object f)
     {
-        fishContainer.newFish(new Fish());
+        fishContainer.newFish((Fish) f);
     }
 
     public GUI() {
-        setTitle("Tło z Obrazem");
+
+        setTitle("Aquarium");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
 
@@ -19,27 +19,37 @@ public class GUI extends JFrame {
         fishContainer.setLayout(new BorderLayout());
 
         fishContainer.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
-        Button FishButton = new Button("Button");
+        Button FishButton = new Button("Add");
         fishContainer.add(FishButton);
         fishContainer.setBackground(Color.cyan);
 
+        //combo box
+        String[] fishNames = {"Red Fish", "Yellow Fish", "Blue Fish"};
+        JComboBox FishList = new JComboBox(fishNames);
+        fishContainer.add(FishList);
 
-
-
-        FishButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                makeFish();
+        FishList.addActionListener(e -> {
+            specie = FishList.getSelectedIndex();
+            System.out.println(FishList.getSelectedIndex());
+        });
+        //button
+        FishButton.addActionListener(e -> {
+            if(specie == 0)
+            {
+                makeFish(new RedFish());
+            }
+            else if(specie == 1)
+            {
+                makeFish(new YellowFish());
+            }
+            else if (specie == 2)
+            {
+                makeFish(new BlueFish());
             }
         });
 
-
-        // Dodanie panelu do okna
         setContentPane(fishContainer);
-
-        // Wyśrodkowanie okna na ekranie
         setLocationRelativeTo(null);
-
         setVisible(true);
         
     }
