@@ -1,8 +1,6 @@
 import javax.swing.*;
 
 public class RedFish extends Fish{
-
-
     public RedFish()
     {
         ImageIcon fish_photo = new ImageIcon("png/fish.png");
