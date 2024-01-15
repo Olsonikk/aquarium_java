@@ -16,7 +16,7 @@ public class InsideContainer extends JPanel
 
     InsideContainer(){
         water = new ImageIcon("png/ocean.jpg");
-        Timer timer = new Timer(200, e -> {
+        Timer timer = new Timer(150, e -> { //move every 150ms (adjustable)
             for(Fish fisk : names)
             {
                 if(action == 2 || action == 3)
@@ -37,6 +37,7 @@ public class InsideContainer extends JPanel
         for(Fish fisk : names)
         {
             action = fisk.getAction();
+            //movement conditions
             if(action == 2 || (previous_direction == 2 && action != 3))
             {
                 g.drawImage(fisk.getLeftImage().getImage(), fisk.getX(), fisk.getY(), 120, 80, this);
