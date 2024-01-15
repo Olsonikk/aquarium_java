@@ -9,6 +9,4 @@ public class YellowFish extends Fish{
         ImageIcon fish_photo_left = new ImageIcon("png/yellow_fish_left.png");
         setLeftImage(fish_photo_left);
     }
-
-    //why is it better to make photo in the constructor rather than as private final?
 }
