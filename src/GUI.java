@@ -27,10 +27,10 @@ public class GUI extends JFrame {
         String[] fishNames = {"Red Fish", "Yellow Fish", "Blue Fish"};
         JComboBox FishList = new JComboBox(fishNames);
         fishContainer.add(FishList);
-
+    
         FishList.addActionListener(e -> {
-            specie = FishList.getSelectedIndex();
-            System.out.println(FishList.getSelectedIndex());
+            specie = FishList.getSelectedIndex(); //index of the specie in the combo box
+            //System.out.println(FishList.getSelectedIndex());
         });
         //button
         FishButton.addActionListener(e -> {
