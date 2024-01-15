@@ -6,6 +6,7 @@ public abstract class Fish extends JFrame{
     private int x,y;
 
     private int action;
+    //random boundary for each fish
     private final int randomMinTop = ThreadLocalRandom.current().nextInt(0, 200);
     private final int randomMaxBottom = ThreadLocalRandom.current().nextInt(250, 480);
     private final int randomMinLeft = ThreadLocalRandom.current().nextInt(0, 300);
@@ -14,17 +15,10 @@ public abstract class Fish extends JFrame{
     ImageIcon leftImage;
     ImageIcon rightImage;
 
-
-
-
-
-
-
+    //sets random location of a fish
     private void randomStartPosition(){
         x = ThreadLocalRandom.current().nextInt(randomMinLeft, randomMaxRight);
         y = ThreadLocalRandom.current().nextInt(randomMinTop, randomMaxBottom);
-        System.out.println(x);
-        System.out.println(y);
 
         this.setLocation(x, y);
     }
@@ -36,8 +30,7 @@ public abstract class Fish extends JFrame{
             this.setLocation(x, y);
         }
         else {
-            System.out.println("Too high!");
-            //y += 40;
+            //System.out.println("Too high!");
         }
     }
     private void moveDown()
@@ -47,8 +40,7 @@ public abstract class Fish extends JFrame{
             this.setLocation(x, y);
         }
         else {
-            System.out.println("Too low!");
-            //y -= 40;
+            //System.out.println("Too low!");
         }
     }
 
@@ -59,8 +51,7 @@ public abstract class Fish extends JFrame{
             this.setLocation(x, y);
         }
         else {
-            System.out.println("Too much to the left!");
-            //x += 40;
+            //System.out.println("Too much to the left!");
         }
     }
     private void moveRight()
@@ -96,12 +87,10 @@ public abstract class Fish extends JFrame{
         else if(action == 2)
         {
             moveLeft();
-            //System.out.println("LEFT");
         }
         else if (action == 3)
         {
             moveRight();
-            //System.out.println("RIGHT");
         }
     }
     protected void setLeftImage(ImageIcon i)
@@ -123,16 +112,13 @@ public abstract class Fish extends JFrame{
         return rightImage;
     }
 
-
-
-
-
     public Fish() {
         randomStartPosition();
-        System.out.println("Min Y: " + randomMinTop);
-        System.out.println("Max Y: " + randomMaxBottom);
-        System.out.println("Min X: " + randomMinLeft);
-        System.out.println("Max X: " + randomMaxRight);
+        //printing on the console the boundaries of each fish
+        //System.out.println("Min Y: " + randomMinTop);
+        //System.out.println("Max Y: " + randomMaxBottom);
+        //System.out.println("Min X: " + randomMinLeft);
+        //System.out.println("Max X: " + randomMaxRight);
     }
 
 }
