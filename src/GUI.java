@@ -10,7 +10,6 @@ public class GUI extends JFrame {
     }
 
     public GUI() {
-
         setTitle("Aquarium");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);

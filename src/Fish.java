@@ -26,20 +26,22 @@ public abstract class Fish extends JFrame{
     private void moveUp()
     {
         if (randomMinTop < y) {
-            y -= 10;
+            y -= 1;
             this.setLocation(x, y);
         }
         else {
+            action=1;
             //System.out.println("Too high!");
         }
     }
     private void moveDown()
     {
         if (randomMaxBottom > y) {
-            y += 10;
+            y += 1;
             this.setLocation(x, y);
         }
         else {
+            action = 0;
             //System.out.println("Too low!");
         }
     }
@@ -47,25 +49,26 @@ public abstract class Fish extends JFrame{
     private void moveLeft()
     {
         if (randomMinLeft < x) {
-            x -= 20;
+            x -= 1;
             this.setLocation(x, y);
         }
         else {
+            action = 3;
             //System.out.println("Too much to the left!");
         }
     }
     private void moveRight()
     {
         if (randomMaxRight > x) {
-            x += 10;
+            x += 1;
             this.setLocation(x, y);
         }
         else {
-            System.out.println("Too much to the right!");
-            //x -= 40;
+            action = 2;
+            //System.out.println("Too much to the right!");
         }
     }
-    public void newAction()
+    private void newAction()
     {
         this.action = ThreadLocalRandom.current().nextInt(0, 4);
     }
@@ -73,9 +76,13 @@ public abstract class Fish extends JFrame{
     {
         return action;
     }
-    public void move()
+    public void move(int a)
     {
-        newAction();
+        if(a==1)
+        {
+            newAction();
+        }
+
         if(action == 0)
         {
             moveUp();
