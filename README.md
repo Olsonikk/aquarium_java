@@ -80,7 +80,7 @@ The FishFactory will read the index file and load it to program.
 
 # UML Diagram
 
-<p align="center"><img align="center" src="https://github.com/dataproctech/long-term-project-java-Olsonikk/blob/main/uml%20(1).png" height="541" width="589" /></p>
+<p align="center"><img align="center" src="https://github.com/dataproctech/long-term-project-java-Olsonikk/blob/main/diagram_uml.png" height="541" width="589" /></p>
 
 # Author
 Aleksander Czarnecki
